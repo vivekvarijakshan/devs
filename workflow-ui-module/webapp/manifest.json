@@ -1,0 +1,317 @@
+{
+    "_version": "1.26.0",
+    "sap.app": {
+        "id": "kaizenprocessnsp.workflowuimodule",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.8.4",
+            "toolsId": "cb4a5d9d-7527-418a-bda9-53e0d8233102"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.82.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "kaizenprocessnsp.workflowuimodule.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "Library/html2canvas.js"
+                },
+                {
+                    "uri": "Library/jspdf.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "kaizenprocessnsp.workflowuimodule.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [],
+            "targets": {}
+        },
+        "rootView": {
+            "viewName": "kaizenprocessnsp.workflowuimodule.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "kaizenprocess"
+    },
+    "sap.bpa.task": {
+        "_version": "1.0.0",
+        "outcomes": [
+            {
+                "id": "approve",
+                "label": "Approve"
+            },
+            {
+                "id": "reject",
+                "label": "Reject"
+            }
+        ],
+        "inputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "input",
+            "type": "object",
+            "required": [
+                "KaizenNumber",
+                "KaizenPeriod",
+                "KaizenTitle",
+                "KaizenMonth",
+                "StartDate",
+                "Business",
+                "Department",
+                "MachineArea",
+                "EndDate",
+                "KaizenClassification",
+                "ProblemOfDefinition",
+                "IdeaDescription",
+                "EmployeeName",
+                "IdeaNo",
+                "EmployeeId",
+                "CostSaving",
+                "ReturnActivity",
+                "FinanceVettingComment",
+                "RewardNomination"
+            ],
+            "properties": {
+                "IdeaDescription": {
+                    "type": "string",
+                    "title": "Idea Description",
+                    "description": "Idea Description"
+                },
+                "RewardNomination": {
+                    "type": "string",
+                    "title": "Reward Nomination",
+                    "description": "Reward Nomination"
+                },
+                "FinanceVettingComment": {
+                    "type": "string",
+                    "title": "Finance Vetting Comment",
+                    "description": "Finance Vetting Comment"
+                },
+                "ReturnActivity": {
+                    "type": "string",
+                    "title": "Return Activity",
+                    "description": "Return Activity"
+                },
+                "CostSaving": {
+                    "type": "number",
+                    "title": "Cost Saving",
+                    "description": "Cost Saving"
+                },
+                "IdeaNo": {
+                    "type": "number",
+                    "title": "Idea Number",
+                    "description": "Idea Number"
+                },
+                "EmployeeId": {
+                    "type": "number",
+                    "title": "Employee Id",
+                    "description": "Employee Id"
+                },
+                "EmployeeName": {
+                    "type": "string",
+                    "title": "Employee Name",
+                    "description": "Employee Name"
+                },
+                "KaizenNumber": {
+                    "type": "number",
+                    "title": "Kaizen Number",
+                    "description": "Kaizen Number"
+                },
+                "KaizenPeriod": {
+                    "type": "string",
+                    "title": "Kaizen Period",
+                    "description": "Kaizen Period"
+                },
+                "KaizenTitle": {
+                    "type": "string",
+                    "title": "Kaizen Title",
+                    "description": "Kaizen Title"
+                },
+                "KaizenMonth": {
+                    "type": "string",
+                    "title": "Kaizen Month",
+                    "description": "Kaizen Month"
+                },
+                "StartDate": {
+                    "type": "string",
+                    "title": "Start Date",
+                    "description": "Start Date"
+                },
+                "Business": {
+                    "type": "string",
+                    "title": "Business",
+                    "description": "Business"
+                },
+                "Department": {
+                    "type": "string",
+                    "title": "Department",
+                    "description": "Department"
+                },
+                "MachineArea": {
+                    "type": "string",
+                    "title": "Machine Area",
+                    "description": "Machine Area"
+                },
+                "EndDate": {
+                    "type": "string",
+                    "title": "End Date",
+                    "description": "End Date"
+                },
+                "KaizenClassification": {
+                    "type": "string",
+                    "title": "Kaizen Classification",
+                    "description": "Kaizen Classification"
+                },
+                "ProblemOfDefinition": {
+                    "type": "string",
+                    "title": "Problem Of Definition",
+                    "description": "Problem Of Definition"
+                }
+            }
+        },
+        "outputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "output",
+            "type": "object",
+            "required": [
+                "IdeaDescription",
+                "ReturnActivity",
+                "FinanceVettingComment",
+                "RewardNomination",
+                "KaizenClassification",
+                "CostSaving",
+                "EmployeeName",
+                "ApproverAction",
+                "comment"
+            ],
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "title": "Comment",
+                    "description": "Comment to buyer"
+                },
+                "KaizenClassification": {
+                    "type": "string",
+                    "title": "Kaizen Classification",
+                    "description": "Kaizen Classification"
+                },
+                "CostSaving": {
+                    "type": "number",
+                    "title": "Cost Saving",
+                    "description": "Cost saving"
+                },
+                "ApproverAction": {
+                    "type": "string",
+                    "title": "Approver Action ",
+                    "description": "Approver Action"
+                },
+                "ReturnActivity": {
+                    "type": "string",
+                    "title": "Return Activity",
+                    "description": "Return Activity"
+                },
+                "FinanceVettingComment": {
+                    "type": "string",
+                    "title": "Finance Vetting Comment",
+                    "description": "Finance Vetting Comment"
+                },
+                "RewardNomination": {
+                    "type": "string",
+                    "title": "Reward Nomination",
+                    "description": "Reward Nomination"
+                },
+                "EmployeeName": {
+                    "type": "string",
+                    "title": "Employee Name",
+                    "description": "Employee Name"
+                },
+                "IdeaDescription": {
+                    "type": "string",
+                    "title": "Idea Description",
+                    "description": "Idea Description"
+                }
+            }
+        },
+        "category": "approval"
+    }
+}

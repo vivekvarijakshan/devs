@@ -1,0 +1,231 @@
+<mvc:View controllerName="kaizenprocessnsp.workflowuimodule.controller.App"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:cdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns="sap.m" height="100%"
+>
+	<App id="app">
+		<Page id = "scroll" showHeader="false">
+			<customHeader>
+				<Bar class="timeclass labelclas" design="Header">
+					<contentLeft>
+						<!-- <VBox height="11rem" width="100%" alignItems="Center" justifyContent="Center"><Image height="2.5rem" width="7rem" src="{oImageModel>/path}download.png" press="onOrderScan"></Image></VBox> -->
+					</contentLeft>
+					<contentMiddle>
+						<VBox height="11rem" width="100%" alignItems="Center" justifyContent="Center">
+							<Label text="Kaizen Form" design="Bold" class="labelclas"></Label>
+						</VBox>
+					</contentMiddle>
+					<contentRight >
+						<VBox height="11rem" width="100%" alignItems="Center" justifyContent="Center">
+							<Image height="2.5rem" width="7rem" src="{oImageModel>/path}download.png" press="onOrderScan"></Image>
+						</VBox>
+					</contentRight>
+				</Bar>
+			</customHeader>
+			<content>
+				<core:ComponentContainer id="attachmentComponentContainer" />
+				<form:SimpleForm id="request-information-form" columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="4"
+							labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="3">
+					<form:content>
+						<core:Title id="idGroup1"/>
+						<Label design="Standard" text="Idea Description" textAlign="Left"/>
+						<Input value="{context>/IdeaDescription}"/>
+						<Label design="Standard" text="Kaizen Classification" textAlign="Left"/>
+						<ComboBox id="classification" selectionChange="onCameraSourceChange" selectedKey="{context>/KaizenClassiffication}">
+							<items>
+								<core:ListItem id='u3' key="Basic" text="Basic"/>
+								<core:ListItem id='u5' key="Improvement" text="Improvement"/>
+								<core:ListItem id='u6' key="RootCauseElimination" text="Root Cause Elimination"/>
+							</items>
+						</ComboBox>
+						<Label design="Standard" text="Return Activity" textAlign="Left"/>
+						<Input value="{context>/ReturnActivity}"/>
+						<Label design="Standard" text="Kaizen Number" textAlign="Left"/>
+						<Input value="{context>/KaizenNumber}"/>
+						<Label design="Standard" text="Kaizen Period" textAlign="Left"/>
+						<Input value="{context>/KaizenPeriod}"/>
+						<Label design="Standard" text="Kaizen Title" textAlign="Left"/>
+						<Input value="{context>/KaizenTitle}"/>
+						<Label design="Standard" text="Kaizen Month" textAlign="Left"/>
+						<Input value="{context>/KaizenMonth}"/>
+						<Label design="Standard" text="Start Date" textAlign="Left"/>
+						<Input value="{context>/StartDate}"/>
+						<!-- <Label design="Standard" text="Impact Of Problem" textAlign="Left"/><TextArea value="{context>/ImpactOfProblem}"/> -->
+						<core:Title/>
+						<Label design="Standard" text="Employee Name" textAlign="Left"/>
+						<Input value="{context>/EmployeeName}"/>
+						<Label design="Standard" text="Cost Saving" textAlign="Left"/>
+						<Input value="{context>/CostSaving}" type="Number"/>
+						<Label design="Standard" text="Finance Vetting Comment" textAlign="Left"/>
+						<Input value="{context>/FinanceVettingComment}"/>
+						<Label design="Standard" text="Reward Nomination" textAlign="Left"/>
+						<Input value="{context>/RewardNomination}"/>
+						<Label design="Standard" text="Business" textAlign="Left"/>
+						<Input value="{context>/Business}"/>
+						<Label design="Standard" text="Department" textAlign="Left"/>
+						<Input value="{context>/Department}"/>
+						<Label design="Standard" text="Machine Area" textAlign="Left"/>
+						<Input value="{context>/MachineArea}"/>
+						<Label design="Standard" text="End Date" textAlign="Left"/>
+						<Input value="{context>/EndDate}"/>
+						<Label design="Standard" text="Problem Of Definition" textAlign="Left"/>
+						<TextArea value="{context>/ProblemOfDefinition}"/>
+						<core:Title/>
+						<Label text="Camera Source"/>
+						<ComboBox id="cameraSource" selectionChange="onCameraSourceChange">
+							<items>
+								<core:ListItem id='u1' key="user" text="Front Camera"/>
+								<core:ListItem id='u2' key="environment" text="Back Camera"/>
+							</items>
+						</ComboBox>
+					</form:content>
+				</form:SimpleForm>
+				<l:Grid class="gridclass" hSpacing="2rem" vSpacing="2rem" defaultSpan="XL6 L6 M12 S12">
+					<HBox id="preview">
+						<VBox width="80%" height="20%">
+							<Label text="Before Picture" class="sapUiSmallMargin"/>
+							<core:HTML id="cameraPreview1" content='&lt;video id="video1" autoplay playsinline muted style="width: 100%; height: auto;"&gt;&lt;/video&gt;'/>
+							<core:HTML id="capturedImage1" content='&lt;img id="image1" autoplay playsinline muted style="width: 100%; height: auto;"&gt;&lt;/video&gt;' />
+						</VBox>
+						<VBox width="20%" id="buttonPanel1">
+							<Button cdata:cameraID="1" type="Success"  tooltip="Start Camera" icon="sap-icon://camera" width="3rem" press="onStartCamera"/>
+							<Button cdata:cameraID="1" type="Negative" tooltip="Stop Camera" icon="sap-icon://stop" width="3rem" press="onStopCamera"/>
+							<Button cdata:cameraID="1" type="Emphasized" tooltip="Capture Image" icon="sap-icon://picture" width="3rem" press="onCaptureImage"/>
+							<Button cdata:cameraID="1" icon="sap-icon://upload" tooltip="Upload Image" type="Attention" width="3rem" press="onUploadMedia"/>
+						</VBox>
+					</HBox>
+					<HBox>
+						<VBox width="80%" height="20%">
+							<Label text="After Picture" class="sapUiSmallMargin"/>
+							<core:HTML id="cameraPreview2" content='&lt;video id="video2" autoplay playsinline muted style="width: 100%; height: auto;"&gt;&lt;/video&gt;'/>
+							<core:HTML id="capturedImage2" content='&lt;img id="image2" autoplay playsinline muted style="width: 100%; height: auto;"&gt;&lt;/video&gt;' />
+						</VBox>
+						<VBox width="20%" id="buttonPanel2">
+							<Button cdata:cameraID="2" type="Success"  tooltip="Start Camera" icon="sap-icon://camera" width="3rem" press="onStartCamera"/>
+							<Button cdata:cameraID="2" type="Negative" tooltip="Stop Camera" icon="sap-icon://stop" width="3rem" press="onStopCamera"/>
+							<Button cdata:cameraID="2" type="Emphasized" tooltip="Capture Image" icon="sap-icon://picture" width="3rem" press="onCaptureImage"/>
+							<Button cdata:cameraID="2" icon="sap-icon://upload" tooltip="Upload Image" type="Attention" width="3rem" press="onUploadMedia"/>
+						</VBox>
+					</HBox>
+				</l:Grid>
+				<l:Grid class="gridclass" hSpacing="2rem" vSpacing="2rem" defaultSpan="XL12 L12 M12 S12">
+					<HBox>
+						<VBox width="92%" height="20%">
+							<Label text="RCA C  E Diagram, Why Analysis" class="sapUiSmallMargin"/>
+							<core:HTML id="cameraPreview3" content='&lt;video id="video3" autoplay playsinline muted style="width: 100%; height: auto;"&gt;&lt;/video&gt;'/>
+							<core:HTML id="capturedImage3" content='&lt;img id="image3" autoplay playsinline muted style="width: 100%; height: auto;"&gt;&lt;/video&gt;' />
+						</VBox>
+						<VBox width="8%" id="buttonPanel3">
+							<Button cdata:cameraID="3" type="Success"  tooltip="Start Camera" icon="sap-icon://camera" width="3rem" press="onStartCamera"/>
+							<Button cdata:cameraID="3" type="Negative" tooltip="Stop Camera" icon="sap-icon://stop" width="3rem" press="onStopCamera"/>
+							<Button cdata:cameraID="3" type="Emphasized" tooltip="Capture Image" icon="sap-icon://picture" width="3rem" press="onCaptureImage"/>
+							<Button cdata:cameraID="3" icon="sap-icon://upload" tooltip="Upload Image" type="Attention" width="3rem" press="onUploadMedia"/>
+						</VBox>
+					</HBox>
+				</l:Grid>
+				<Table class="sapUiSizeCompact catalogTable" id="activitiesid" inset="false" fixedLayout="false" width="100%" items="{NavtableModel>/}"
+							noDataText="{i18n>TableisEmpty}" sticky="ColumnHeaders,HeaderToolbar">
+					<headerToolbar>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<ToolbarSpacer/>
+							<Title text="Authorization"/>
+							<ToolbarSpacer/>
+							<ToolbarSpacer/>
+							<SearchField width="30%" liveChange="PactivitySearch"/>
+							<!--<ToolbarSpacer width="2%"/>-->
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Name"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Emp ID"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" minScreenWidth="small" demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Role"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" minScreenWidth="small" demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Signature"/>
+							</header>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{NavtableModel>ActvtText}"/>
+								<Input value="{NavtableModel>ActvtVal}" liveChange="onInputNumberLiveChange" editable="false" enabled="true" class="coloumnborder"/>
+								<Input value="{NavtableModel>ActvtUnit}" maxLength="3" editable="false" enabled="true" class="coloumnborder"/>
+								<CheckBox selected="{= ${NavtableModel>ActvtR}!==''}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<Table class="sapUiSizeCompact catalogTable" inset="false" fixedLayout="false" width="100%" items="{NavtableModel>/}"
+							noDataText="{i18n>TableisEmpty}" sticky="ColumnHeaders,HeaderToolbar">
+					<headerToolbar>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<ToolbarSpacer/>
+							<Title text="Team Details"/>
+							<ToolbarSpacer/>
+							<ToolbarSpacer/>
+							<SearchField width="30%" liveChange="PactivitySearch"/>
+							<!--<ToolbarSpacer width="2%"/>-->
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Idea Giver Details"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Company"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" minScreenWidth="small" demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Name"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" minScreenWidth="small" demandPopin="true" popinDisplay="Inline">
+							<header>
+								<Label design="Bold" text="Emp ID "/>
+							</header>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{NavtableModel>ActvtText}"/>
+								<Input value="{NavtableModel>ActvtVal}" liveChange="onInputNumberLiveChange" editable="false" enabled="true" class="coloumnborder"/>
+								<Input value="{NavtableModel>ActvtUnit}" maxLength="3" editable="false" enabled="true" class="coloumnborder"/>
+								<CheckBox selected="{= ${NavtableModel>ActvtR}!==''}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<Button text="Preview PDF" press="onPreviewPDF" type="Emphasized" />
+				<CheckBox id="Ack" text="I acknowledge that we have received your order and will process it based on the availability" wrapping="true"/>
+				<Label id="comment-label" text="Comment"/>
+				<TextArea id="comment-field" showExceededText="true" maxLength="1000" width="100%" height="120px" value="{context>/comment}"/>
+			</content>
+		</Page>
+	</App>
+</mvc:View>
